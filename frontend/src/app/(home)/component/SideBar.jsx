@@ -10,7 +10,7 @@ const SideBar = () => {
       src="https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/f8239007-7d36-45ce-a0a1-fdf91052b10e/299f5e14-73c4-4a9b-99c9-e44adbc218cf.png"
     />
     <p className="text-white text-xl font-bold mb-2">Samulel Johnson</p>
-    <p className="text-white mb-2">UI Designer | Let's redesign the world</p>
+    <p className="text-white mb-2">UI Designer | Let redesign the world</p>
     <p className="text-white">alisson.rochinski@gmail.com</p>
 
     </div>

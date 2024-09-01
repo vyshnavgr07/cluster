@@ -10,8 +10,8 @@ export default function homeLayout({ children }) {
         </div>
         <div className=" row-span-5 hidden md:block  border-l p-2 col-start-5 row-start-1 overflow-y-auto hide-scrollbar ">
         <div className="text-white   w-full text-2xl    p-4 ">Cluster</div>
-          {[...Array(10)].map((x) => (
-            <div className="flex mt-5  space-x-4 p-3 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
+          {[...Array(10)].map((x,i) => (
+            <div   key={i} className="flex mt-5  space-x-4 p-3 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
               <img
                 className="w-14 h-14 rounded-full object-cover"
                 src="https://thumbs.dreamstime.com/b/portrait-male-african-american-professional-possibly-business-executive-corporate-ceo-finance-attorney-lawyer-sales-stylish-155546880.jpg"

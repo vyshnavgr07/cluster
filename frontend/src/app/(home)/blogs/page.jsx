@@ -9,8 +9,8 @@ let img='https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/ht
   return (
     <div className='w-full   h-screen overflow-y-auto p-2  hide-scrollbar'>
       <HomeHead img={img}/>
- {[...Array(5)].map((x)=>(
-   <div className='w-full border border-white h-[700px] shadow-2xl mt-10 overflow-hidden rounded-md p-3'>
+ {[...Array(5)].map((x,i)=>(
+   <div key={i}   className='w-full border border-white h-[700px] shadow-2xl mt-10 overflow-hidden rounded-md p-3'>
    <ProfileHeader  image={img} name={'saleej'}/>
     <div className='w-full '>
         <div className='w-full flex justify-center  mt-2'> 

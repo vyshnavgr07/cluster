@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Modal = ({ show, onClose, onSubmit, post }) => {
-  if (!show) return null;
-
   const [title, setTitle] = useState(post.title);
   const [content, setContent] = useState(post.content);
+
+  useEffect(() => {
+ 
+    setTitle(post.title);
+    setContent(post.content);
+  }, [post]);
+
+  if (!show) return null;
 
   const handleSubmit = (e) => {
     e.preventDefault();
