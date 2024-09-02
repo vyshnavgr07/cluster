@@ -2,8 +2,8 @@ import React from 'react'
 
 const SideBar = () => {
   return (
-    <div className="w-full h-screen flex flex-col items-center border-r-2 ">
-    <div className="text-white w-full text-2xl border-b  border-b-white   p-4 ">Cluster</div>
+    <div className="w-full h-screen flex flex-col items-center border-r-[1px] border-r-slate-600  ">
+     <div className="text-white w-full text-2xl border-b-[1.2px]  border-b-slate-600 h-16  p-4  ">Cluster</div>
     <div className='w-full mt-5 flex flex-col items-center'>
     <img
       className="w-20 h-20 rounded-full mb-4"

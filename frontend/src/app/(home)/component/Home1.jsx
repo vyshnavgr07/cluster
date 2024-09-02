@@ -23,7 +23,7 @@ const Home1 = () => {
     router.push('/login')
   }
   return (
-    <div className={`bg-${bg}-500 w-full overflow-hidden `} >
+    <div className={`bg-${bg}-500 w-full overflow-hidden hide-scrollbar`} >
     <Meteors number={30} />
     <div className='w-full flex justify-between' >
     <Button value={'Blogger'}  />
