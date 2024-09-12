@@ -1,8 +1,5 @@
 const nodemailer = require('nodemailer');
-const { hashing } = require('../utils/generateToken');
-const emialVerification = require('../models/otpSchema');
 const crypto=require('crypto')
-
 const Otp=require('../models/otpSchema')
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -17,30 +14,30 @@ const transporter = nodemailer.createTransport({
     }
 });
  
-const sendVerificationEmail = async (user, res) => {
-    console.log(user,'usuuss')
-    const { _id, email, } = user;
+const sendOtp = async (user, res) => {
+  const { _id, email, } = user;
     const otp=crypto.randomInt(100000, 1000000).toString();
     try {
-        const existingUser=await Otp.findOne({email})
-        if(!existingUser){
-            await Otp.create({
-                userId: _id,
-                email:email,
-                otp: otp,
-                createAt: Date.now(),
-                expiresAt: Date.now() + 36000,
-            });
-    
-        }else{
-            await Otp.updateOne({email},{$set:{otp:otp}})
-        }
-   
+    const existOtp=await Otp.findOne({email})
+
+    if(!existOtp){
+        await Otp.create({
+            userId: _id,
+            email:email,
+            otp: otp,
+            createAt: Date.now(),
+            expiresAt: Date.now() + 36000,
+        });    
+    }else{
+        await Otp.updateOne({email},{$set:{otp:otp}})
+    }
+      
+  
 
         const info = await transporter.sendMail({
             from: '"Cluster Community👻" ', 
             to: email,
-            subject: "Verify Email for High Hydration",
+            subject: "Verify Email for cluster",
             html: `<div>
             <p>Hello, User</p>
             <p>Please use the following OTP to verify your email address:</p>
@@ -48,12 +45,12 @@ const sendVerificationEmail = async (user, res) => {
             <p>If you didn't request this, you can ignore this email.</p>
         </div>`,
         });
-        res.status(201).json({
-            status: "success",
+
+        return {
+            status:201,
             message: 'Verification email has been sent to your account. Check your email for further instructions.',
             data: user,  
-
-        });
+};
     } catch (error) {
         console.error('Error sending verification email:', error);
        res.status(500).json({ message: "Something went wrong" });
@@ -61,5 +58,5 @@ const sendVerificationEmail = async (user, res) => {
 };
 
 module.exports = {
-    sendVerificationEmail
+    sendOtp
 };
