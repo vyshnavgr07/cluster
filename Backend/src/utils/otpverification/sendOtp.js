@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 const crypto=require('crypto')
-const Otp=require('../models/otpSchema')
+const Otp=require('../../models/otpSchema')
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port:465,
@@ -26,15 +26,13 @@ const sendOtp = async (user, res) => {
             email:email,
             otp: otp,
             createAt: Date.now(),
-            expiresAt: Date.now() + 36000,
+            expiresAt: Date.now() + 10 * 60 * 1000,
         });    
     }else{
         await Otp.updateOne({email},{$set:{otp:otp}})
     }
       
-  
-
-        const info = await transporter.sendMail({
+    const info = await transporter.sendMail({
             from: '"Cluster Community👻" ', 
             to: email,
             subject: "Verify Email for cluster",

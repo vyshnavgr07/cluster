@@ -1,8 +1,7 @@
 const User = require('../models/userSchema');
 const { signupService } = require('../service/authService');
-const {sendOtp} = require('../utils/sendOtp');
-const {otpVerify} =require('../utils/otpVerify')
-const Otp=require('../models/otpSchema')
+const {sendOtp} = require('../utils/otpverification/sendOtp');
+const otpVerify=require('../utils/otpverification/otpVerify')
 const userRegistration = async (req, res) => {
     try {
         const data = req.body;
@@ -30,8 +29,9 @@ const verifyOtp = async (req, res) => {
     if (!email || !otp) {
         return res.status(400).json({ message: 'Email and OTP are required.' }); 
     }
- try {
-
+try {
+    const otpresponse=await otpVerify(email,otp)
+    return res.status(otpresponse.status).json(otpresponse.message); 
  } catch (error) {
         console.error('Error verifying OTP:', error);
         res.status(500).json({ message: 'Error verifying OTP.' });
