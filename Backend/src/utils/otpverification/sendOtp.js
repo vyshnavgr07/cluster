@@ -33,16 +33,27 @@ const sendOtp = async (user, res) => {
     }
       
     const info = await transporter.sendMail({
-            from: '"Cluster Community👻" ', 
-            to: email,
-            subject: "Verify Email for cluster",
-            html: `<div>
+        from: '"Cluster Community👻" <your_email@example.com>', 
+        to: email,
+        subject: "Verify Email for Cluster",
+        html: `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Verify Email for Cluster</title>
+    </head>
+    <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+        <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+            <h2 style="color: #4a4a4a;">Cluster Community</h2>
             <p>Hello, User</p>
             <p>Please use the following OTP to verify your email address:</p>
-            <p><strong>${otp}</strong></p>
+            <p style="font-size: 24px; font-weight: bold; color: #007bff;">${otp}</p>
             <p>If you didn't request this, you can ignore this email.</p>
-        </div>`,
-        });
+        </div>
+    </body>
+    </html>`
+    });
 
         return {
             status:201,
