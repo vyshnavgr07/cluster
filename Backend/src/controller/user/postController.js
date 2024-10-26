@@ -1,21 +1,21 @@
-const Blog = require('../models/blogSchema')
-const Comment = require('../models/commentSchema');
-const User=require('../models/userSchema')
+import  Blog  from  '../../models/postSchema.js';
+import Comment from '../../models/commentSchema.js';
+import  User from '../../models/userSchema.js';
 
 
-const createBlog = async (req, res) => {
+export const createPost= async (req, res) => {
     try {
-        const { user } = req.decoded;
-        const data = req.body
-        console.log(data,user)
+        const user  = req.user;
+       const data = req.body
+        
         if (!data) {
             res.status(400).json({
                 status: 'failed',
                 message: ""
             })
         }
-        const userD=await User.findOne({_id:user._id})
-        console.log(userD,"userr");
+        const userD=await User.findOne({_id:user.userId})
+      
         
         const blog = await new Blog({ userId: user._id,author:user.userName,...data });
         const savedBlog = await blog.save();
@@ -32,7 +32,7 @@ const createBlog = async (req, res) => {
     }
 }
 
-const getBlog = async (req, res) => {
+export const getBlog = async (req, res) => {
     try {
         const blog = await Blog.find().populate("userId");
         res.status(200).json({
@@ -46,7 +46,7 @@ const getBlog = async (req, res) => {
     }
 }
 
-const getBlogId = async (req, res) => {
+export const getBlogId = async (req, res) => {
     try {
     const _id=req.params._id;
     const blog = await Blog.findOne({_id}).populate('userId');
@@ -61,7 +61,7 @@ const getBlogId = async (req, res) => {
     }
 }
 
-const getBlogByUserId=async(req,res)=>{
+export const getBlogByUserId=async(req,res)=>{
     try {
         const id=req.params._id
         console.log(id);
@@ -89,7 +89,7 @@ const getBlogByUserId=async(req,res)=>{
 
 
 
-const UpdateBlog = async (req, res) => {
+export const UpdateBlog = async (req, res) => {
     try {
         const id=req.params.id
         const {title, content, author } = req.body;
@@ -112,7 +112,7 @@ const UpdateBlog = async (req, res) => {
     }
 }
 
-const deletedBlog = async (req, res) => {
+export const deletedBlog = async (req, res) => {
     try {
         const { id } = req.params;
         const delteBlog = await Blog.findOneAndDelete({ _id: id })
@@ -136,7 +136,7 @@ const deletedBlog = async (req, res) => {
 
 
 
-const addComment = async (req, res) => {
+export const addComment = async (req, res) => {
     try {
         const id = req.decoded.user._id;
         const blogId=req.params.id
@@ -156,7 +156,7 @@ const addComment = async (req, res) => {
     }
 }
 
-const getComment=async(req,res)=>{
+export const getComment=async(req,res)=>{
 try {
     const id=req.params.id
 
@@ -171,5 +171,5 @@ try {
     
 }
 }
-module.exports = { createBlog, getBlog, UpdateBlog, deletedBlog, addComment,getComment,getBlogId,getBlogByUserId } 
+ 
 

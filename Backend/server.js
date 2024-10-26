@@ -1,10 +1,9 @@
-const app=require('./app')
-const http=require('http');
-const env=require('dotenv');
-env.config({path:'./.env'})
+import app from './app.js'
+import  env from'dotenv';
+env.config()
 const port=process.env.PORT;
 
-const mongoose=require('mongoose')
+import mongoose from 'mongoose'
 
 mongoose.connect(process.env.DB_URL,{dbName:"Blog"})
 .then(()=>{
@@ -15,9 +14,9 @@ mongoose.connect(process.env.DB_URL,{dbName:"Blog"})
     console.log('db error',err);
     
 })
-const server=http.createServer(app);
 
-server.listen(port,()=>{
+
+app.listen(port,()=>{
     console.log(`server is listening on:${port}`);
     
 })

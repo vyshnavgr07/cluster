@@ -1,7 +1,7 @@
  import axios from 'axios'
 
 const api = axios.create({
-    baseURL:"http://localhost:4002/api"
+    baseURL:"https://cluster-17uz.onrender.com"
 });
 
 api.interceptors.request.use(function (config) {
@@ -17,7 +17,6 @@ api.interceptors.request.use(function (config) {
   });
   
 
-// Add a response interceptor
 api.interceptors.response.use(function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data

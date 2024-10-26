@@ -1,4 +1,4 @@
-const mongoose=require('mongoose');
+import mongoose  from "mongoose";
 
 const otpSchema=mongoose.Schema({
     userId:String,
@@ -11,4 +11,4 @@ const otpSchema=mongoose.Schema({
 
 const Otp=mongoose.model('Otp',otpSchema)
 
-module.exports=Otp;
+export default Otp;

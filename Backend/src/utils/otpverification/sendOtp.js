@@ -1,7 +1,9 @@
-const nodemailer = require('nodemailer');
-const crypto=require('crypto')
-const Otp=require('../../models/otpSchema')
-const transporter = nodemailer.createTransport({
+import  nodemailer from 'nodemailer';
+import  crypto from 'crypto';
+import  Otp from   '../../models/otpSchema.js'
+
+
+const transporter=nodemailer.createTransport({
     host: "smtp.gmail.com",
     port:465,
     secure:true,
@@ -14,7 +16,7 @@ const transporter = nodemailer.createTransport({
     }
 });
  
-const sendOtp = async (user, res) => {
+const sendOtp = async (user) => {
   const { _id, email, } = user;
     const otp=crypto.randomInt(100000, 1000000).toString();
     try {
@@ -66,6 +68,4 @@ const sendOtp = async (user, res) => {
     }
 };
 
-module.exports = {
-    sendOtp
-};
+export default sendOtp;

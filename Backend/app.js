@@ -1,19 +1,19 @@
-const express=require('express');
-const app=express();
-const morgan =require('morgan')
-const userRouter=require('./src/routes/userRoute');
-const blogRoutes = require('./src/routes/blogsRoute');
-const errorHandler=require('./src/middleware/errorHandler')
-const cors=require('cors')
+import express from'express';
+const  app=express();
+import morgan from 'morgan'
+import cors from'cors'
+import userRoute from './src/routes/user/userRoute.js';
+import postRoutes from './src/routes/user/postRoute.js'
 app.use(express.json());
-app.use(cors())
 app.use(morgan('dev'))
-app.use('/user/',userRouter)
-app.use('/blogs/',blogRoutes) 
-app.use(errorHandler)
+app.use(cors())
+app.use('/api',userRoute)
+app.use('/api',postRoutes)
+
+// app.use(errorHandler)
 
 
 
 
 
-module.exports=app;
+export default app;

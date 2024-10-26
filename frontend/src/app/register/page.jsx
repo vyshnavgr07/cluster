@@ -6,8 +6,6 @@ import axios from 'axios';
 import api from '../../../utils/axiosInterceptor';
 import { useRouter } from 'next/navigation';
 
-
-
 const validationSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is required'),
     userName: Yup.string()  
